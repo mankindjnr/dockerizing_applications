@@ -3,4 +3,8 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    pass
+    return render(request, "start/index.html")
+
+
+def about(request):
+    return render(request, "start/index.html")

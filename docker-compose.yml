@@ -6,7 +6,7 @@ services:
       context: ./django_app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./django_app:/usr/src/app/
+      - ./django_app:/usr/src/djapp/
     ports:
       - "8000:8000"
     depends_on:
@@ -17,9 +17,9 @@ services:
   fastapi:
     build:
       context: ./fastapi_app
-    command: uvicorn main:app --host 0.0.0.0 --port 9400
+    command: uvicorn main:app --host 0.0.0.0 --port 9400 --reload
     volumes:
-      - ./fastapi_app:/usr/src/app/
+      - ./fastapi_app:/usr/src/fastapp/
     ports:
       - "9400:9400"
     depends_on:
