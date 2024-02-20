@@ -14,6 +14,7 @@
 
 - create a docker-compose.yml file in the parent directory
 - run `docker-compose up --build` to build and run the containers
+- add `-d` flag to run the containers in the background
 
 ## Access the applications
 
@@ -21,8 +22,13 @@
   - Django: http://localhost:8000
   - FastAPI: http://localhost:8001
 - ### on a network
+
   - Django: http://<host_ip>:8000
   - FastAPI: http://<host_ip>:8001
+
+- ### from one application to another
+  - Django to FastAPI: http://fastapi:8001
+  - FastAPI to Django: http://django:8000
 
 ---
 
