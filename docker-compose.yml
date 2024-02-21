@@ -1,11 +1,11 @@
 version: '3.9'
 
 services:
-  db:
+  dbase:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: pass123word
       POSTGRES_DB: postgres
     ports:
       - "5433:5432"
@@ -19,19 +19,19 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - dbase
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/postgres
+      - DATABASE_URL=postgres://postgres:pass123word@dbase:5432/postgres
 
   fastapi:
     build:
       context: ./fastapi_app
-    command: uvicorn main:app --host 0.0.0.0 --port 9400 --reload
+    command: uvicorn app.main:app --host 0.0.0.0 --port 9400 --reload
     volumes:
       - ./fastapi_app:/usr/src/fastapp/
     ports:
       - "9400:9400"
     depends_on:
-      - db
+      - dbase
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/postgres
+      - DATABASE_URL=postgres://postgres:pass123word@dbase:5432/postgres
